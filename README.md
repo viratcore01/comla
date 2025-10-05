@@ -1,70 +1,227 @@
-# Getting Started with Create React App
+# Comla - College Finder & Application Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack MERN application for students to discover, compare, and apply to colleges with personalized recommendations and secure document management.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **Smart College Discovery**: AI-powered recommendations based on student profiles
+- **Advanced Search & Filtering**: Location, courses, fees, rankings
+- **Secure Authentication**: JWT with refresh tokens
+- **Application Management**: Complete application lifecycle tracking
+- **File Upload**: Secure document storage (AWS S3/Local)
+- **Role-Based Access**: Student, College Admin, and System Admin roles
+- **Responsive Design**: Mobile-first UI with Tailwind CSS
+- **Error Monitoring**: Sentry integration for production monitoring
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend
+- React 19 with Hooks
+- React Router for navigation
+- Tailwind CSS for styling
+- Axios for API calls
+- Context API for state management
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend
+- Node.js with Express.js
+- MongoDB with Mongoose ODM
+- JWT for authentication
+- Multer for file uploads
+- AWS SDK for S3 integration
+- Sentry for error monitoring
 
-### `npm test`
+### DevOps
+- Jest for testing
+- Cypress for E2E testing
+- Docker support
+- CI/CD ready
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📋 Prerequisites
 
-### `npm run build`
+- Node.js 18+
+- MongoDB (local or Atlas)
+- AWS Account (for S3, optional)
+- Sentry Account (for error monitoring, optional)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Quick Start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. Clone and Install
+```bash
+git clone <repository-url>
+cd comla
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Install frontend dependencies
+npm install
 
-### `npm run eject`
+# Install backend dependencies
+cd backend
+npm install
+cd ..
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 2. Environment Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Backend (.env)
+```bash
+# Database
+MONGO_URI=mongodb://localhost:27017/comla
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Authentication
+JWT_SECRET=your_super_secure_jwt_secret_key_here_minimum_32_characters
+JWT_REFRESH_SECRET=your_super_secure_refresh_secret_key_here_minimum_32_characters
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Server
+PORT=5000
+NODE_ENV=development
+FRONTEND_URL=http://localhost:3000
 
-## Learn More
+# AWS S3 (optional)
+AWS_ACCESS_KEY_ID=your_aws_access_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+AWS_REGION=us-east-1
+S3_BUCKET_NAME=comla-documents
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Email (optional)
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Error Monitoring (optional)
+SENTRY_DSN=https://your-sentry-dsn-here@sentry.io/project-id
+```
 
-### Code Splitting
+#### Frontend (.env)
+```bash
+REACT_APP_API_URL=http://localhost:5000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 3. Database Setup
+```bash
+cd backend
+npm run seed
+```
 
-### Analyzing the Bundle Size
+### 4. Start Development Servers
+```bash
+# Terminal 1: Backend
+cd backend
+npm run dev
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Terminal 2: Frontend
+npm start
+```
 
-### Making a Progressive Web App
+Visit `http://localhost:3000` to access the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🧪 Testing
 
-### Advanced Configuration
+### Unit & Integration Tests
+```bash
+cd backend
+npm test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### E2E Tests
+```bash
+npm run test:e2e
+```
 
-### Deployment
+## 🚀 Production Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 1. MongoDB Atlas Setup
+1. Create MongoDB Atlas cluster
+2. Get connection string
+3. Update `MONGO_URI` in production environment
 
-### `npm run build` fails to minify
+### 2. AWS S3 Setup (Optional)
+1. Create S3 bucket
+2. Configure IAM user with S3 permissions
+3. Update AWS credentials in environment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 3. Sentry Setup (Optional)
+1. Create Sentry project
+2. Get DSN
+3. Update `SENTRY_DSN` in environment
+
+### 4. Backend Deployment (Render)
+```bash
+# Build and deploy backend
+cd backend
+npm run build  # if needed
+# Deploy to Render with environment variables
+```
+
+### 5. Frontend Deployment (Vercel)
+```bash
+# Deploy frontend
+npm run build
+# Deploy to Vercel with REACT_APP_API_URL environment variable
+```
+
+## 🔧 API Documentation
+
+### Authentication
+- `POST /api/auth/signup` - User registration
+- `POST /api/auth/login` - User login
+- `POST /api/auth/refresh` - Refresh access token
+- `GET /api/auth/profile/:userId` - Get user profile
+- `PUT /api/auth/profile/:userId` - Update user profile
+
+### Colleges
+- `GET /api/colleges` - Get all colleges
+- `GET /api/colleges/:id` - Get college by ID
+- `GET /api/colleges/search` - Search colleges with filters
+- `POST /api/colleges/filter` - Smart filtering
+- `POST /api/colleges` - Add new college (admin)
+
+### Applications
+- `POST /api/applications/apply` - Apply to college
+- `GET /api/applications/:studentId` - Get student applications
+- `DELETE /api/applications/:applicationId` - Withdraw application
+- `GET /api/applications/college/:collegeId` - Get college applications
+- `PUT /api/applications/:applicationId/status` - Update application status
+
+## 🔒 Security Features
+
+- JWT authentication with refresh tokens
+- Password hashing with bcrypt
+- Input validation and sanitization
+- CORS configuration
+- Rate limiting
+- File upload validation
+- Error monitoring with Sentry
+
+## 📱 Mobile Responsiveness
+
+The application is fully responsive and optimized for:
+- Desktop (1200px+)
+- Tablet (768px - 1199px)
+- Mobile (320px - 767px)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+For support, email support@comla.com or create an issue in the repository.
+
+## 📊 Roadmap
+
+- [ ] Advanced ML-based recommendations
+- [ ] Payment gateway integration
+- [ ] Real-time notifications
+- [ ] College reviews and ratings
+- [ ] Admin analytics dashboard
+- [ ] Mobile app (React Native)
+
+---
+
+**Built with ❤️ for students worldwide**
