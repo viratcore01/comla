@@ -3,15 +3,22 @@ const College = require('./models/College');
 require('dotenv').config();
 
 // Default placeholder image for colleges without images
-const DEFAULT_PLACEHOLDER = "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/default-college.jpg";
+const DEFAULT_PLACEHOLDER = "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/default-college-campus.jpg";
 
 // Mapping of old placeholder URLs to new Cloudinary URLs
 const imageMapping = {
-  "https://via.placeholder.com/400x300?text=Delhi+University": "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/delhi-university.jpg",
-  "https://via.placeholder.com/400x300?text=IIT+Delhi": "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/iit-delhi.jpg",
-  "https://via.placeholder.com/400x300?text=Mumbai+University": "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/mumbai-university.jpg",
-  "https://via.placeholder.com/400x300?text=IIT+Bombay": "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/iit-bombay.jpg",
-  "https://via.placeholder.com/400x300?text=Bangalore+University": "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/bangalore-university.jpg"
+  "https://via.placeholder.com/400x300?text=Delhi+University": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/delhi-university-campus.jpg",
+  "https://via.placeholder.com/400x300?text=IIT+Delhi": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/iit-delhi-campus.jpg",
+  "https://via.placeholder.com/400x300?text=Mumbai+University": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/mumbai-university-campus.jpg",
+  "https://via.placeholder.com/400x300?text=IIT+Bombay": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/iit-bombay-campus.jpg",
+  "https://via.placeholder.com/400x300?text=Bangalore+University": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/bangalore-university-campus.jpg",
+  // Also map the old Cloudinary URLs to new ones
+  "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/delhi-university.jpg": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/delhi-university-campus.jpg",
+  "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/iit-delhi.jpg": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/iit-delhi-campus.jpg",
+  "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/mumbai-university.jpg": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/mumbai-university-campus.jpg",
+  "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/iit-bombay.jpg": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/iit-bombay-campus.jpg",
+  "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/bangalore-university.jpg": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/bangalore-university-campus.jpg",
+  "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/default-college.jpg": "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/default-college-campus.jpg"
 };
 
 const migrateCollegeImages = async () => {

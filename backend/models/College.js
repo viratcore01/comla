@@ -26,7 +26,7 @@ const collegeSchema = new mongoose.Schema({
 // Pre-save hook to set default image if not provided
 collegeSchema.pre('save', function(next) {
   if (!this.image || this.image.trim() === '') {
-    this.image = "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/default-college.jpg";
+    this.image = "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/default-college-campus.jpg";
   }
   next();
 });

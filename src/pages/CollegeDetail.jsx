@@ -15,29 +15,32 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// College Image Component with Unsplash auto-fetch
+// College Image Component with Cloudinary fallback
 const CollegeImage = ({ collegeName, fallback }) => {
-  const [imageSrc, setImageSrc] = useState(fallback);
+  const [imageSrc, setImageSrc] = useState(fallback || "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/default-college-campus.jpg");
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
-    const fetchImage = async () => {
-      try {
-        const response = await axios.get(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(collegeName + ' college building')}&per_page=1&client_id=YOUR_UNSPLASH_ACCESS_KEY`);
-        if (response.data.results && response.data.results.length > 0) {
-          setImageSrc(response.data.results[0].urls.regular);
-        }
-      } catch (error) {
-        console.error('Failed to fetch image from Unsplash:', error);
-        setImageSrc("https://via.placeholder.com/800x400?text=College+Image");
-      }
-    };
-
-    if (!fallback) {
-      fetchImage();
+    if (fallback && !imageError) {
+      setImageSrc(fallback);
     }
-  }, [collegeName, fallback]);
+  }, [fallback, imageError]);
 
-  return <img src={imageSrc} alt={collegeName} className="w-full h-64 object-cover rounded" />;
+  const handleImageError = () => {
+    if (!imageError) {
+      setImageError(true);
+      setImageSrc("https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/default-college-campus.jpg");
+    }
+  };
+
+  return (
+    <img
+      src={imageSrc}
+      alt={collegeName}
+      className="w-full h-64 object-cover rounded"
+      onError={handleImageError}
+    />
+  );
 };
 
 const CollegeDetail = () => {

@@ -93,7 +93,16 @@ const CollegeList = () => {
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {colleges.map(college => (
           <div key={college._id} className="bg-white p-4 rounded shadow hover:shadow-lg transition cursor-pointer" onClick={() => navigate(`/colleges/${college._id}`)}>
-            <img src={college.images?.[0] || "https://via.placeholder.com/300"} alt={college.name} className="h-40 w-full object-cover rounded mb-2" />
+            <div className="relative h-40 w-full mb-2">
+              <img
+                src={college.image || "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/default-college-campus.jpg"}
+                alt={college.name}
+                className="h-full w-full object-cover rounded"
+                onError={(e) => {
+                  e.target.src = "https://res.cloudinary.com/dytimzerg/image/upload/v1696500000/default-college-campus.jpg";
+                }}
+              />
+            </div>
             <h2 className="text-xl font-bold">{college.name}</h2>
             <p className="text-sm text-gray-600">📍 {college.location} | 🏆 #{college.ranking}</p>
             <p className="mt-2 text-sm">{college.description.substring(0, 100)}...</p>
