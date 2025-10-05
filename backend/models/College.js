@@ -23,6 +23,14 @@ const collegeSchema = new mongoose.Schema({
   ranking: Number         // e.g., 1 (national ranking)
 });
 
+// Pre-save hook to set default image if not provided
+collegeSchema.pre('save', function(next) {
+  if (!this.image || this.image.trim() === '') {
+    this.image = "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/default-college.jpg";
+  }
+  next();
+});
+
 // Add indexes for performance
 collegeSchema.index({ name: 'text', location: 'text', description: 'text' }); // Text search index
 collegeSchema.index({ location: 1 }); // Location filter index

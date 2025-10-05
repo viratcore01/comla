@@ -5,7 +5,7 @@ require('dotenv').config();
 const seedColleges = [
   {
     name: "Delhi University",
-    image: "https://via.placeholder.com/400x300?text=Delhi+University",
+    image: "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/delhi-university.jpg",
     description: "One of India's premier universities with excellent placement records and diverse academic programs.",
     location: "Delhi",
     courses: ["Computer Science", "Business Administration", "Engineering", "Arts", "Commerce"],
@@ -15,7 +15,7 @@ const seedColleges = [
   },
   {
     name: "IIT Delhi",
-    image: "https://via.placeholder.com/400x300?text=IIT+Delhi",
+    image: "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/iit-delhi.jpg",
     description: "Premier engineering institute known for cutting-edge research and innovation.",
     location: "Delhi",
     courses: ["Computer Science", "Mechanical Engineering", "Electrical Engineering", "Civil Engineering"],
@@ -25,7 +25,7 @@ const seedColleges = [
   },
   {
     name: "Mumbai University",
-    image: "https://via.placeholder.com/400x300?text=Mumbai+University",
+    image: "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/mumbai-university.jpg",
     description: "Historic university offering comprehensive education in various disciplines.",
     location: "Mumbai",
     courses: ["Information Technology", "Commerce", "Science", "Management"],
@@ -35,7 +35,7 @@ const seedColleges = [
   },
   {
     name: "IIT Bombay",
-    image: "https://via.placeholder.com/400x300?text=IIT+Bombay",
+    image: "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/iit-bombay.jpg",
     description: "World-renowned institute for engineering and technology education.",
     location: "Mumbai",
     courses: ["Computer Science", "Chemical Engineering", "Aerospace Engineering"],
@@ -45,7 +45,7 @@ const seedColleges = [
   },
   {
     name: "Bangalore University",
-    image: "https://via.placeholder.com/400x300?text=Bangalore+University",
+    image: "https://res.cloudinary.com/dytimzerg/image/upload/v1698765432/colleges/bangalore-university.jpg",
     description: "Leading university in India's tech capital with strong industry connections.",
     location: "Bangalore",
     courses: ["Computer Applications", "Business Management", "Electronics"],
