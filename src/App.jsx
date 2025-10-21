@@ -76,7 +76,14 @@ function App() {
     </MainLayout>
   }
 />
- <Route path="/CollegeDashboard" element={<CollegeDashboard />} />
+ <Route
+   path="/college-dashboard"
+   element={
+     <MainLayout>
+       <CollegeDashboard />
+     </MainLayout>
+   }
+ />
         <Route
           path="/student-details"
           element={
