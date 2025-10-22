@@ -23,7 +23,13 @@ const Signup = () => {
       navigate("/login");
     } catch (err) {
       console.error(err);
-      setError(err.response?.data?.error || "Signup failed");
+      // Handle validation errors array from backend
+      if (err.response?.data?.errors && Array.isArray(err.response.data.errors)) {
+        const errorMessages = err.response.data.errors.map(error => error.msg || error.message).join(', ');
+        setError(errorMessages);
+      } else {
+        setError(err.response?.data?.error || "Signup failed");
+      }
     }
   };
 
