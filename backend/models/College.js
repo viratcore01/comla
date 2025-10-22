@@ -1,5 +1,5 @@
 // backend/models/College.js
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const collegeSchema = new mongoose.Schema({
   name: String,
@@ -38,4 +38,4 @@ collegeSchema.index({ courses: 1 }); // Courses filter index
 collegeSchema.index({ fees: 1 }); // Fees sorting/filtering index
 collegeSchema.index({ name: 1 }); // Name sorting index
 
-module.exports = mongoose.model('College', collegeSchema);
+export default mongoose.model('College', collegeSchema);

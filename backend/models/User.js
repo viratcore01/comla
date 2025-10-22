@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -26,4 +26,4 @@ const userSchema = new mongoose.Schema({
 userSchema.index({ preferredCourses: 1 }); // For filtering
 userSchema.index({ location: 1 }); // For location-based matching
 
-module.exports = mongoose.model("User", userSchema);
+export default mongoose.model("User", userSchema);
