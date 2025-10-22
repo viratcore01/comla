@@ -1,8 +1,8 @@
-const express = require("express");
-const Application = require("../models/Application");
-const { authenticateToken } = require("../middleware/auth");
-const { upload, uploadToCloudinary, isCloudinaryConfigured } = require("../utils/fileUpload");
-const { sendEmail, emailTemplates } = require("../utils/email");
+import express from "express";
+import Application from "../models/Application.js";
+import { authenticateToken } from "../middleware/auth.js";
+import { upload, uploadToCloudinary, isCloudinaryConfigured } from "../utils/fileUpload.js";
+import { sendEmail, emailTemplates } from "../utils/email.js";
 const router = express.Router();
 
 // Apply to a college (requires auth)
@@ -143,4 +143,4 @@ router.put("/:applicationId/status", authenticateToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
