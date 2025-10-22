@@ -13,12 +13,15 @@ const app = express();
 
 // CORS middleware (must be before routes and other middleware)
 app.use(cors({
-  origin: 'https://comla.vercel.app',
+  origin: ['https://comla.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
   optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 }));
+
+// Handle preflight requests
+app.options('*', cors());
 
 // Security middleware
 app.use(helmet());
