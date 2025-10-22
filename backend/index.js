@@ -11,28 +11,32 @@ const applicationRoutes = require("./routes/ApplicationRoutes");
 
 const app = express();
 
-// CORS middleware (must be before routes and other middleware)
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://comla.vercel.app"
-];
+// CORS configuration
+const allowedOrigins = ["http://localhost:3000", "https://comla.vercel.app"];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function(origin, callback){
+    // allow requests with no origin like mobile apps, Postman, curl
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = "The CORS policy for this site does not allow access from the specified Origin.";
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
-  optionsSuccessStatus: 200
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }));
 
-// Handle preflight requests for all routes
-app.options("*", cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
-  optionsSuccessStatus: 200
-}));
+// Handle preflight OPTIONS requests
+app.options("*", (req, res) => {
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.sendStatus(200);
+});
 
 // Security middleware
 app.use(helmet());
