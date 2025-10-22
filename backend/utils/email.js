@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 // Create transporter
 const createTransporter = () => {
@@ -73,4 +73,4 @@ const emailTemplates = {
   })
 };
 
-module.exports = { sendEmail, emailTemplates };
+export { sendEmail, emailTemplates };

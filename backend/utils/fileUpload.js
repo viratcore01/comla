@@ -1,6 +1,7 @@
-const multer = require('multer');
-const cloudinary = require('cloudinary').v2;
-const path = require('path');
+import multer from 'multer';
+import { v2 as cloudinary } from 'cloudinary';
+import path from 'path';
+import fs from 'fs';
 
 // Configure Cloudinary
 cloudinary.config({
@@ -97,8 +98,6 @@ const deleteFile = async (filePath) => {
     }
   } else {
     // Delete from local filesystem
-    const fs = require('fs');
-    const path = require('path');
     const localPath = path.join('uploads', filePath);
     if (fs.existsSync(localPath)) {
       fs.unlinkSync(localPath);
@@ -106,7 +105,7 @@ const deleteFile = async (filePath) => {
   }
 };
 
-module.exports = {
+export {
   upload,
   getFileUrl,
   deleteFile,
