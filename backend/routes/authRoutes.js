@@ -23,15 +23,14 @@ router.post("/signup", [
   try {
     const { name, email, password } = req.body;
 
-    // Mock: Skip DB check and save
-    // const existingUser = await User.findOne({ email });
-    // if (existingUser) {
-    //   return res.status(400).json({ error: "Email already exists" });
-    // }
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
 
-    // const hashedPassword = await bcrypt.hash(password, 10);
-    // const newUser = new User({ name, email, password: hashedPassword });
-    // await newUser.save();
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ name, email, password: hashedPassword });
+    await newUser.save();
 
     res.json({ message: "Signup successful" });
   } catch (err) {
