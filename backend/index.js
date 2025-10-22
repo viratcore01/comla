@@ -11,14 +11,16 @@ const applicationRoutes = require("./routes/ApplicationRoutes");
 
 const app = express();
 
-// Security middleware
-app.use(helmet());
+// CORS middleware (must be before routes and other middleware)
 app.use(cors({
   origin: 'https://comla.vercel.app',
-  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
 }));
+
+// Security middleware
+app.use(helmet());
 
 // Rate limiting
 const limiter = rateLimit({
