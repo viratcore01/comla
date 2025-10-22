@@ -147,7 +147,7 @@ router.get("/profile/:userId", authenticateToken, async (req, res) => {
     const user = { _id: req.params.userId, name: "Mock User", email: "mock@example.com", role: "student", subjects: ["Math"], competitiveExams: ["JEE"], ranks: [], preferredCourses: ["CSE"], location: "Delhi", minBudget: 10000, maxBudget: 50000 };
     res.json({ user });
   } catch (err) {
-    console.error(err);
+    console.error('Signup error:', err);
     res.status(500).json({ error: "Server error" });
   }
 });
