@@ -60,6 +60,11 @@ app.use("/api/auth", authLimiter);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+// Test root route
+app.get("/", (req, res) => {
+  res.send("Backend is live ✅");
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/colleges", collegeRoutes);
 app.use("/api/applications", applicationRoutes);

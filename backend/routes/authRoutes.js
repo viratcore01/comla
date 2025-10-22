@@ -1,18 +1,10 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { body, validationResult } = require("express-validator");
-const { authenticateToken } = require("../middleware/auth");
-const User = require("../models/User");
+const { signup, login } = require("../controllers/authController");
 
 const router = express.Router();
 
-// Signup
-router.post("/signup", async (req, res) => {
-  // Temporary simple response to test routing
-  console.log("Signup route hit!");
-  res.json({ message: "Signup route working!" });
-});
+router.post("/signup", signup);
+router.post("/login", login);
 
 // Login
 router.post("/login", [
