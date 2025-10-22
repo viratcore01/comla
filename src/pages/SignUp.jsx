@@ -17,18 +17,21 @@ const Signup = () => {
       return;
     }
     try {
+      console.log("Attempting signup with:", form);
+      console.log("API URL:", process.env.REACT_APP_API_BASE_URL);
       const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/signup`, form);
-      console.log(res.data);
+      console.log("Signup response:", res.data);
       alert("Signup successful! Please login.");
       navigate("/login");
     } catch (err) {
-      console.error(err);
+      console.error("Signup error:", err);
+      console.error("Error response:", err.response);
       // Handle validation errors array from backend
       if (err.response?.data?.errors && Array.isArray(err.response.data.errors)) {
         const errorMessages = err.response.data.errors.map(error => error.msg || error.message).join(', ');
         setError(errorMessages);
       } else {
-        setError(err.response?.data?.error || "Signup failed");
+        setError(err.response?.data?.error || err.message || "Signup failed");
       }
     }
   };
