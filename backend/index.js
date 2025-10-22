@@ -14,7 +14,7 @@ const app = express();
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  origin: ["https://comla.vercel.app", "http://localhost:3000"],
   credentials: true
 }));
 
@@ -26,13 +26,13 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Auth rate limiting (stricter)
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // limit each IP to 5 auth requests per windowMs
-  message: "Too many authentication attempts, please try again later."
-});
-app.use("/api/auth", authLimiter);
+// Auth rate limiting (disabled for development)
+// const authLimiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   max: 1000, // limit each IP to 1000 auth requests per windowMs for development
+//   message: "Too many authentication attempts, please try again later."
+// });
+// app.use("/api/auth", authLimiter);
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
