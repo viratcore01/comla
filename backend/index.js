@@ -1,13 +1,13 @@
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const helmet = require("helmet");
-const rateLimit = require("express-rate-limit");
+import "dotenv/config";
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 
-const authRoutes = require("./routes/authRoutes");
-const collegeRoutes = require("./routes/collegeRoutes");
-const applicationRoutes = require("./routes/ApplicationRoutes");
+import authRoutes from "./routes/authRoutes.js";
+import collegeRoutes from "./routes/collegeRoutes.js";
+import applicationRoutes from "./routes/ApplicationRoutes.js";
 
 const app = express();
 
