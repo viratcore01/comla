@@ -65,7 +65,7 @@ app.get("/", (req, res) => {
   res.send("Backend is live ✅");
 });
 
-app.use("/auth", authRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/colleges", collegeRoutes);
 app.use("/api/applications", applicationRoutes);
 
