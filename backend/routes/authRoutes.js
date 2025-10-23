@@ -1,5 +1,5 @@
-import express from "express";
-import { signup, login } from "../controllers/authController.js";
+const express = require("express");
+const { signup, login } = require("../controllers/authController");
 
 const router = express.Router();
 
@@ -161,4 +161,4 @@ router.put("/profile/:userId", authenticateToken, [
   }
 });
 
-export default router;
+module.exports = router;

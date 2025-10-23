@@ -1,5 +1,5 @@
 // backend/models/Application.js
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const applicationSchema = new mongoose.Schema({
   student: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
@@ -9,4 +9,4 @@ const applicationSchema = new mongoose.Schema({
   documents: [{ type: String }] // Array of file paths
 });
 
-export default mongoose.model("Application", applicationSchema);
+module.exports = mongoose.model("Application", applicationSchema);

@@ -1,8 +1,8 @@
-import express from "express";
-import { authenticateToken } from "../middleware/auth.js";
-import User from "../models/User.js";
-import College from "../models/College.js";
-import Application from "../models/Application.js";
+const express = require("express");
+const { authenticateToken } = require("../middleware/auth");
+const User = require("../models/User");
+const College = require("../models/College");
+const Application = require("../models/Application");
 const router = express.Router();
 
 // Middleware to check admin role
@@ -95,4 +95,4 @@ router.put("/applications/:id/status", authenticateToken, requireAdmin, async (r
   }
 });
 
-export default router;
+module.exports = router;

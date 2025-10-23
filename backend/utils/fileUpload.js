@@ -1,7 +1,7 @@
-import multer from 'multer';
-import { v2 as cloudinary } from 'cloudinary';
-import path from 'path';
-import fs from 'fs';
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const path = require('path');
+const fs = require('fs');
 
 // Configure Cloudinary
 cloudinary.config({
@@ -105,7 +105,7 @@ const deleteFile = async (filePath) => {
   }
 };
 
-export {
+module.exports = {
   upload,
   getFileUrl,
   deleteFile,

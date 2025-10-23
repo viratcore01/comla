@@ -1,9 +1,9 @@
-import express from "express";
+const express = require("express");
 const router = express.Router();
-import { body, validationResult } from "express-validator";
-import { authenticateToken } from "../middleware/auth.js";
-import College from "../models/College.js";
-import User from "../models/User.js";
+const { body, validationResult } = require("express-validator");
+const { authenticateToken } = require("../middleware/auth");
+const College = require("../models/College");
+const User = require("../models/User");
 
 // POST /api/colleges - Add a new college
 router.post("/", [
@@ -308,4 +308,4 @@ router.post("/filter", async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;
