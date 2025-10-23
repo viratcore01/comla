@@ -24,7 +24,7 @@ const Login = () => {
     setError("");
 
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/login`, form);
+      const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/login`, form);
       console.log("Login successful:", res.data);
 
       // Login with tokens

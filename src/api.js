@@ -12,7 +12,7 @@ const api = axios.create({
 // Signup function
 export const signup = async (userData) => {
   try {
-    const response = await api.post("/auth/signup", userData);
+    const response = await api.post("/api/auth/signup", userData);
     console.log("Signup response:", response.data);
     return response.data;
   } catch (error) {
@@ -24,7 +24,7 @@ export const signup = async (userData) => {
 // Login function
 export const login = async (userData) => {
   try {
-    const response = await api.post("/auth/login", userData);
+    const response = await api.post("/api/auth/login", userData);
     console.log("Login response:", response.data);
     return response.data;
   } catch (error) {

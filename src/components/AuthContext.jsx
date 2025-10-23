@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
         return null;
       }
 
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/refresh`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth/refresh`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

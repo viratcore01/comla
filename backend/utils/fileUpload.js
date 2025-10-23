@@ -57,7 +57,7 @@ const getFileUrl = (file) => {
     return file.path || file.url;
   } else {
     // Local URL
-    return `${process.env.FRONTEND_URL || 'http://localhost:3000'}/uploads/${file.filename}`;
+    return `${process.env.BACKEND_URL || 'http://localhost:5000'}/uploads/${file.filename}`;
   }
 };
 

@@ -19,7 +19,7 @@ const Signup = () => {
     try {
       console.log("Attempting signup with:", form);
       console.log("API URL:", process.env.REACT_APP_API_BASE_URL);
-      const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/signup`, form);
+      const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/signup`, form);
       console.log("Signup response:", res.data);
       alert("Signup successful! Please login.");
       navigate("/login");

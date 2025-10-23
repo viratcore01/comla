@@ -26,7 +26,7 @@ const Profile = () => {
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/auth/profile/${user._id}`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/auth/profile/${user._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setProfile(res.data.user);
@@ -59,7 +59,7 @@ const Profile = () => {
   const handleSubmit = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`${process.env.REACT_APP_API_BASE_URL}/auth/profile/${user._id}`, profile, {
+      await axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/auth/profile/${user._id}`, profile, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("Profile updated! Redirecting to dashboard...");
