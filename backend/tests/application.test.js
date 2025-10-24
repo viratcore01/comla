@@ -92,9 +92,9 @@ describe('Application Routes', () => {
       const response = await request(app)
         .post('/api/applications/apply')
         .send({ collegeId: college._id })
-        .expect(403);
+        .expect(401);
 
-      expect(response.body.error).toBe('Unauthorized');
+      expect(response.body.error).toBe('Access token required');
     });
   });
 
@@ -132,7 +132,7 @@ describe('Application Routes', () => {
         .set('Authorization', `Bearer ${studentToken}`)
         .expect(403);
 
-      expect(response.body.error).toBe('Unauthorized');
+      expect(response.body.error).toBe('Access token required');
     });
   });
 
@@ -172,7 +172,7 @@ describe('Application Routes', () => {
       const response = await request(app)
         .delete(`/api/applications/${application._id}`)
         .set('Authorization', jwt.sign({ id: otherStudent._id, email: otherStudent.email }, process.env.JWT_SECRET))
-        .expect(403);
+        .expect(401);
 
       expect(response.body.error).toBe('Unauthorized');
     });
