@@ -10,57 +10,7 @@ const router = express.Router();
 
 router.post("/signup", signup);
 
-// Login
-router.post("/login", [
-  body('email').isEmail().normalizeEmail().withMessage('Invalid email'),
-  body('password').notEmpty().withMessage('Password is required')
-], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  try {
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ error: "Invalid credentials" });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
-
-    // Create access token (short-lived)
-    const accessToken = jwt.sign(
-      { id: user._id, email: user.email, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: "15m" } // 15 minutes
-    );
-
-    // Create refresh token (long-lived)
-    const refreshToken = jwt.sign(
-      { id: user._id },
-      process.env.JWT_REFRESH_SECRET,
-      { expiresIn: "7d" } // 7 days
-    );
-
-    console.log(`[AUTH] JWT tokens generated for user ${user.email}`);
-
-    res.json({
-      message: "Login successful",
-      accessToken,
-      refreshToken,
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role
-      }
-    });
-  } catch (err) {
-    console.error('Login error:', err);
-    res.status(500).json({ error: "Server error" });
-  }
-});
+router.post("/login", login);
 
 // Refresh token
 router.post("/refresh", async (req, res) => {
