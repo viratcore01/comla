@@ -19,12 +19,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node backend/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:e2e": "cypress run",
     "test:e2e:open": "cypress open",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node backend/index.js"
   },
   "eslintConfig": {
     "extends": [
